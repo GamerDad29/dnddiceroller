@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DnD Physics Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>DnD Dice Roller</h1>
+        <div class="dice-container">
+            <div class="dice" data-sides="4" data-count="0">D4</div>
+            <div class="dice" data-sides="6" data-count="0">D6</div>
+            <div class="dice" data-sides="8" data-count="0">D8</div>
+            <div class="dice" data-sides="10" data-count="0">D10</div>
+            <div class="dice" data-sides="12" data-count="0">D12</div>
+            <div class="dice" data-sides="20" data-count="0">D20</div>
+            <div class="dice" data-sides="100" data-count="0">D%</div>
+        </div>
+        <button id="rollButton">Roll Selected Dice</button>
+        <button id="clearButton">Clear</button>
+        <div id="result"></div>
+    </div>
+
+    <!-- Modal for showing results -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalResult"></div>
+            <div id="modifierSection">
+                <div id="modifierInput">
+                    <button class="modifier-button" data-value="1">1</button>
+                    <button class="modifier-button" data-value="2">2</button>
+                    <button class="modifier-button" data-value="3">3</button>
+                    <button class="modifier-button" data-value="4">4</button>
+                    <button class="modifier-button" data-value="5">5</button>
+                    <button class="modifier-button" data-value="6">6</button>
+                    <button class="modifier-button" data-value="7">7</button>
+                    <button class="modifier-button" data-value="8">8</button>
+                    <button class="modifier-button" data-value="9">9</button>
+                    <button class="modifier-button" data-value="0">0</button>
+                    <button id="modifierClear">Clear</button>
+                </div>
+                <div id="modifierDisplay">
+                    <strong>Modifier: </strong><span id="modifierValue">0</span>
+                </div>
+                <div id="totalDisplay">
+                    <strong>Total: </strong><span id="totalValue">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

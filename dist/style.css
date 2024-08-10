@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+body {
+    font-family: 'MedievalSharp', cursive;
+    background-color: #2a2a2a;
+    color: #f5c518; /* Gold-like color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-image: url('https://i.imgur.com/MQ41MiD.png'); /* Set background image */
+    background-size: cover; /* Cover the entire container */
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7); /* Darker shadow */
+    border: 2px solid #4a4a4a; /* Dark gray border */
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #f5c518; /* Gold-like color */
+    text-shadow: 2px 2px #000; /* Subtle text shadow for depth */
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dice {
+    width: 60px;
+    height: 60px;
+    background-color: #003366; /* Deep blue */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #ffffff; /* White text */
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #4a4a4a; /* Dark gray border */
+    position: relative;
+}
+
+.dice:hover {
+    transform: scale(1.1);
+}
+
+.dice.selected {
+    box-shadow: 0 0 20px 10px #f5c518; /* Brighter gold glow when selected */
+    transform: translateY(-5px); /* Slight lift when selected */
+}
+
+.dice::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #f5c518; /* Gold background */
+    color: #003366; /* Deep blue text */
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    display: none; /* Hide initially */
+}
+
+.dice.selected::after {
+    display: flex; /* Show only if selected */
+}
+
+#result {
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    color: #ffffff; /* White text */
+    background-color: #003366; /* Deep blue background */
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 2px solid #4a4a4a; /* Dark gray border */
+    text-shadow: 1px 1px #000; /* Subtle text shadow for depth */
+}
+
+#rollButton, #clearButton {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.2rem;
+    background-color: #003366; /* Deep blue */
+    color: #ffffff; /* White text */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 2px solid #4a4a4a; /* Dark gray border */
+    margin-top: 1rem;
+}
+
+#rollButton:hover, #clearButton:hover {
+    background-color: #004c99; /* Slightly lighter blue on hover */
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #1c1c1c; /* Dark gray background for modal */
+    margin: 15% auto;
+    padding: 20px;
+    border: 2px solid #4a4a4a; /* Dark gray border */
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    color: #ffffff; /* White text */
+    font-size: 1.8rem;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+#modalResult {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.result-column {
+    color: #ffffff; /* White text */
+    background-color: #003366; /* Deep blue background */
+    padding: 0.5rem;
+    border-radius: 5px;
+    text-align: center;
+    min-width: 60px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem; /* Smaller font for individual rolls */
+}
+
+/* Modifier section styling */
+#modifierSection {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#modifierInput {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.modifier-button {
+    background-color: #004c99; /* Deep blue */
+    color: #ffffff; /* White text */
+    font-size: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modifier-button:hover {
+    background-color: #007acc; /* Slightly lighter blue on hover */
+}
+
+#modifierDisplay, #totalDisplay {
+    font-size: 1.8rem;
+    color: #f5c518; /* Gold color */
+    margin-top: 0.5rem;
+}
+
+#modifierClear {
+    background-color: #cc0000; /* Red for clear button */
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#modifierClear:hover {
+    background-color: #ff3333; /* Lighter red on hover */
+}
+
+.close {
+    color: #f5c518; /* Gold color */
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #004c99; /* Slightly lighter blue on hover */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+@keyframes roll {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(360deg); }
+    100% { transform: rotate(720deg); }
+}
+
+.dice.roll {
+    animation: roll 1s ease-in-out; /* Dice rolling animation */
+}
